@@ -9,15 +9,19 @@
         Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
         <Style x:Key="TextBoxWithPlaceholder" TargetType="{x:Type TextBox}">
+            <Setter Property="CaretBrush" Value="Black"/>
+            <Setter Property="Foreground" Value="Black"/>
+            
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TextBox}">
                         <Grid>
                             <Border x:Name="Border"
-                                    BorderThickness="1"
-                                    CornerRadius="2"
+                                    BorderThickness="2"
+                                    CornerRadius="5"
                                     Background="{TemplateBinding Background}"
-                                    BorderBrush="{TemplateBinding BorderBrush}"/>
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    />
                             <TextBlock x:Name="Placeholder"
                                        Text="{TemplateBinding Tag}"
                                        Foreground="Gray"
@@ -25,9 +29,7 @@
                                        IsHitTestVisible="False"
                                        Visibility="Collapsed"
                                        Style="{TemplateBinding att:Helper.AdditionalStyle}"/>
-                            <ScrollViewer x:Name="PART_ContentHost"
-                                          Margin="5,0,0,0"
-                                          VerticalAlignment="{Binding RelativeSource={RelativeSource AncestorType={x:Type TextBox}}, Path=TagVerticalContentAlignment}" />
+                           
                         </Grid>
                         <ControlTemplate.Triggers>
                             <MultiTrigger>
@@ -43,17 +45,27 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <UniformGrid Background="AliceBlue">
+    <Grid Background="AliceBlue">
         <TextBox Style="{DynamicResource TextBoxWithPlaceholder}" Tag="Какой-то текст"/>
-        <TextBox Style="{DynamicResource TextBoxWithPlaceholder}" Tag="Какой-то текст">
+        <TextBox Height="100" Width="200" Style="{DynamicResource TextBoxWithPlaceholder}" Tag="Какой-то текст">
             <att:Helper.AdditionalStyle>
                 <Style TargetType="TextBlock">
-                    <Setter Property="FontSize" Value="50"/>
+                    <Setter Property="FontSize" Value="20"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                </Style>
+            </att:Helper.AdditionalStyle>
+        </TextBox>
+
+        <TextBox Tag="Акак писать" Style="{StaticResource TextBoxWithPlaceholder}" Height="300" Background="White" Width="200" HorizontalAlignment="Left">
+            <att:Helper.AdditionalStyle>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="10"/>
                     <Setter Property="VerticalAlignment" Value="Center"/>
                     <Setter Property="HorizontalAlignment" Value="Center"/>
                 </Style>
             </att:Helper.AdditionalStyle>
         </TextBox>
-    </UniformGrid>
+    </Grid>
 
 </Window>
